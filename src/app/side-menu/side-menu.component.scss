@@ -1,0 +1,53 @@
+
+mat-nav-list {
+    width: 200px;
+    }
+    
+    mat-list-item {
+    cursor: pointer;
+    }
+    
+    mat-list-item:hover {
+    background-color: #f0f0f0;
+    }
+    
+    mat-icon {
+    margin-right: 10px;
+    }
+    
+
+.sidenav-container {
+    // width: auto;
+    height: 200px;
+
+    //     height: 200px;
+    //     margin: 10px;
+    //     border: 1px solid #555;
+    //     /* The background property is added to clearly distinguish the borders between drawer and main
+    //        content */
+    //     background: #eee;
+  }
+  mat-sidenav {
+         width: 250px;
+  }
+  
+
+// .example-container {
+//     width: auto;
+//     height: 200px;
+//     margin: 10px;
+//     border: 1px solid #555;
+//     /* The background property is added to clearly distinguish the borders between drawer and main
+//        content */
+//     background: #eee;
+//   }
+  
+
+
+
+// .sidenav-container {
+//     height: 100%;
+//   }
+//   mat-sidenav {
+//     width: 250px;
+//   }

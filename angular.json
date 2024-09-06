@@ -31,8 +31,8 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": [              
+              "src/assets/css/global-styles.scss", "src/styles.scss"
             ],
             "scripts": []
           },
@@ -90,13 +90,16 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": [              
+              "src/assets/css/global-styles.scss", "src/styles.scss"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
