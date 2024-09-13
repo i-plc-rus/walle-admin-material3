@@ -1,5 +1,6 @@
-@use '../links' as links;
-@use '../anchor' as anchor;
+@use '../../../assets/css/links' as links;
+@use '../../../assets/css/anchor' as anchor;
+@use '../../../assets/css/media-queries' as mq;
 
 :host {
   --translate-y: clamp(5px, 0.25em, 7px);
@@ -9,15 +10,15 @@
   display: flex;
   flex-direction: column;
   padding: var(--layout-padding);
-  max-width: var(--page-width);
+  //max-width: var(--page-width);
   width: 100%;
   box-sizing: border-box;
 
-  @media only screen and (max-width: 1430px) {
-    container: docs-content / inline-size;
-  }
+   @media only screen and (max-width: 1430px) {
+     container: docs-content / inline-size;
+   }
 
-  // If rendered on the docs page, accommodate width for TOC
+  //If rendered on the docs page, accommodate width for TOC
   docs-docs & {
     @media only screen and (min-width: 1430px) and (max-width: 1550px) {
       width: calc(100% - 195px - var(--layout-padding));
@@ -127,3 +128,34 @@
     }
   }
 }
+
+.example-form-field {
+    width: 200px;
+  }
+
+
+  .demo-table {
+    width: 100%;
+  }
+  
+  .demo-button-container {
+    padding-bottom: 16px;
+  }
+  
+  .demo-button + .demo-button {
+    margin-left: 8px;
+  }
+
+  
+  
+  .custom-table {
+    // Настроить выравнивание всех ячеек в таблице
+    
+    .mat-column-sku_count {
+      text-align: right; // Пример для выравнивания текста слева
+    }
+    .mat-column-q {
+      text-align: right; // Пример для выравнивания текста слева
+    }
+  
+  }

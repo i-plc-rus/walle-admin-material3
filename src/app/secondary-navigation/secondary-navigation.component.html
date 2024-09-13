@@ -1,0 +1,46 @@
+<div class="adev-secondary-navigation">
+  <div class="adev-secondary-nav-mask">
+    <div class="docs-nav-secondary docs-scroll-track-transparent">
+      <ul class="docs-navigation-list docs-faceted-list ng-star-inserted" *ngIf="currentUrl === '/sku/original'">
+        <li class="docs-faceted-list-item ng-star-inserted">
+          <div class="docs-secondary-nav-header ng-star-inserted"><span>Генерация списков</span></div>
+          <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
+            <li class="docs-faceted-list-item ng-star-inserted"><a routerlinkactive="docs-faceted-list-item-active"
+                href="/overview" class="ng-star-inserted docs-faceted-list-item-active"><span>Оригинал</span></a></li>
+            <li class="docs-faceted-list-item ng-star-inserted"><a routerlinkactive="docs-faceted-list-item-active"
+                href="/installation" class="ng-star-inserted"><span>Не оригинал</span></a></li>
+          </ul>
+        </li>
+
+        <li class="docs-faceted-list-item ng-star-inserted">
+          <div class="docs-secondary-nav-header ng-star-inserted"><span>Наименования SKU</span></div>
+          <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
+            <li class="docs-faceted-list-item ng-star-inserted"><a routerlinkactive="docs-faceted-list-item-active"
+                href="/overview" class="ng-star-inserted docs-faceted-list-item"><span>По базе DIF</span></a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <!--  -->
+      <ul class="docs-navigation-list docs-faceted-list ng-star-inserted"
+        *ngIf="currentUrl === '/dif/supid-week' || currentUrl === '/dif/supid-date'">
+        <li class="docs-faceted-list-item ng-star-inserted">
+          <div class="docs-secondary-nav-header ng-star-inserted"><span>Статистика по поставщику</span></div>
+          <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
+            <li class="ng-star-inserted">
+              <a [class.docs-faceted-list-item-active]="currentUrl === '/dif/supid-week'" routerLink="dif/supid-week">
+                <span>За текущую неделю</span>
+              </a>
+            </li>
+            <li class="ng-star-inserted">
+              <a [class.docs-faceted-list-item-active]="currentUrl === '/dif/supid-date'"
+                routerLink="dif/supid-date"><span>На произвольную дату</span></a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+</div>
