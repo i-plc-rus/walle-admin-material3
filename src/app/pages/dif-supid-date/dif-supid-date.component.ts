@@ -34,7 +34,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
   selector: 'app-dif-supid-week',
   standalone: true,
   imports: [DocsBreadcrumbComponent, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, ReactiveFormsModule, MenuComponent, MatTableModule, CommonModule, MatGridListModule, MatCardModule, MatCardContent, JsonPipe, MatDatepickerModule],
-  providers: [provideNativeDateAdapter()],  
+  providers: [provideNativeDateAdapter(),],
   templateUrl: './dif-supid-date.component.html',
   styleUrls: ['./dif-supid-date.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

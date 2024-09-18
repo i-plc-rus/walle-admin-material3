@@ -2,7 +2,7 @@
     <!-- <div class="docs-viewer ng-star-inserted">   -->
     <div class="docs-viewer">
       <app-docs-breadcrumb></app-docs-breadcrumb>
-      <!-- <mat-form-field class="example-form-field">
+      <mat-form-field class="example-form-field">
         <mat-label>supid</mat-label>
         <input matInput [formControl]="searchControl">
         @if (searchControl.value) {
@@ -10,15 +10,15 @@
           <mat-icon>close</mat-icon>
         </button>
         }
-      </mat-form-field> -->
+      </mat-form-field>
 
       <mat-form-field>
-        <mat-label>Enter a date range</mat-label>
+        <mat-label>Выбор диапазона дат</mat-label>
         <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-          <input matStartDate formControlName="start" placeholder="Start date">
-          <input matEndDate formControlName="end" placeholder="End date">
+          <input matStartDate formControlName="start" placeholder="Начало">
+          <input matEndDate formControlName="end" placeholder="Конец">
         </mat-date-range-input>
-        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>
       
