@@ -45,7 +45,7 @@ export class DifSupidDateComponent implements OnInit{
     start: new FormControl<Date | null>(null),
     end: new FormControl<Date | null>(null),
   });
-  value = '';  
+  //value = '';  
   public origin: ISupStat [] = []
   public not_origin: Array<ISupStat> = []
   searchControl = new FormControl('');
@@ -53,6 +53,9 @@ export class DifSupidDateComponent implements OnInit{
   displayedColumns: string[] = ['date_upd', 'sku_count', 'q'];
 
   constructor(private backApi: BackAPIService) {    
+    this.range.valueChanges.subscribe(val => {
+      this.onDateChange(val);
+    });
   }
   ngOnInit(): void {
     /*combineLatest([
@@ -80,7 +83,7 @@ export class DifSupidDateComponent implements OnInit{
     
     this.searchControl.valueChanges
       .pipe(
-        debounceTime(300),         
+        //debounceTime(300),         
         filter(value => value !== null && value.trim() !== ''),
         map(value => +value!),
         filter(value => !isNaN(value)),        
@@ -95,10 +98,10 @@ export class DifSupidDateComponent implements OnInit{
         //this.dataSource = this.origin
       });
       
-      this.range.valueChanges
+      /*this.range.valueChanges
       .pipe(
-        debounceTime(300),         
-        filter(value => value !== null),        
+        //debounceTime(300),         
+        //filter(value => value !== null),
         switchMap(value =>           
           this.backApi.getSupStatV2(Number(this.searchControl.value), value.start, value.end)
       )
@@ -108,7 +111,7 @@ export class DifSupidDateComponent implements OnInit{
         this.origin = _supStatResponse.origin
         this.not_origin = _supStatResponse.not_origin
         //this.dataSource = this.origin
-      });
+      });*/
   }
 
   clearSupID() : void{
@@ -116,6 +119,21 @@ export class DifSupidDateComponent implements OnInit{
     this.origin = []
     this.not_origin = []
   }
+
+  onDateChange(val: any) {
+    const startDate = val.start;
+    const endDate = val.end;
+    console.log('Дата начала:', startDate);
+    console.log('Дата окончания:', endDate);
+    this.backApi.getSupStatV2(Number(this.searchControl.value), val.start, val.end).subscribe(response => {
+      const _supStatResponse = <ISupStatResponse>response
+      this.origin = _supStatResponse.origin
+      this.not_origin = _supStatResponse.not_origin
+      //this.dataSource = this.origin
+    });
+
+  }
+
 
   
 }
