@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ISupStatResponse } from '../models/sup-stat-response';
-import { Observable , throwError } from 'rxjs';
+import { EMPTY, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -10,8 +10,14 @@ import { catchError, tap } from 'rxjs/operators';
 export class BackAPIService {
 
   private urlAPIMS = 'http://192.168.111.41:8100/api/v1/';  // URL to web api
-  
-  constructor(private http: HttpClient) { }
+  private headers: HttpHeaders = new HttpHeaders();
+
+  constructor(private http: HttpClient) {
+    this.headers.set('Content-type', 'application/json');
+    this.headers.set('Access-Control-Allow-Origin', '*');
+    this.headers.set("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+    this.headers.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -30,15 +36,19 @@ export class BackAPIService {
   }
 
   getSupStat(sup_id: number): Observable<ISupStatResponse> {
-    const headers: HttpHeaders = new HttpHeaders();
-    headers.set('Content-type', 'application/json');    
-    headers.set('Access-Control-Allow-Origin', '*');
-    headers.set("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
-    headers.set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-
     const url = `${this.urlAPIMS}sup_stat/?supid=${sup_id}`;
-    return this.http.get<ISupStatResponse>(url, {headers})
-                      .pipe(catchError(this.handleError))
+    const headers = this.headers;
+    return this.http.get<ISupStatResponse>(url, { headers })
+      .pipe(catchError(this.handleError))
+  }
+
+  getSupStatV2(sup_id: number | null | undefined, d1: Date | null | undefined, d2: Date | null| undefined): Observable<ISupStatResponse> {
+    console.log(sup_id,d1,d2)
+    if (!sup_id || !d1 || !d2) return EMPTY;    
+    const headers = this.headers;
+    const url = `${this.urlAPIMS}sup_stat/?supid=${sup_id}&d1=${d1.toISOString().slice(0, 10)}&d2=${d2.toISOString().slice(0, 10)}`;
+    return this.http.get<ISupStatResponse>(url, { headers })
+      .pipe(catchError(this.handleError))
   }
 
 }
