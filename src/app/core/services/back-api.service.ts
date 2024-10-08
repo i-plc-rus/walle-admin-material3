@@ -42,11 +42,14 @@ export class BackAPIService {
       .pipe(catchError(this.handleError))
   }
 
-  getSupStatV2(sup_id: number | null | undefined, d1: Date | null | undefined, d2: Date | null| undefined): Observable<ISupStatResponse> {
-    console.log(sup_id,d1,d2)
-    if (!sup_id || !d1 || !d2) return EMPTY;    
+  getSupStatV2(sup_id: number, d1: Date, d2: Date): Observable<ISupStatResponse> {
+    /*console.log(sup_id,d1,d2)
+    if (!sup_id || !d1 || !d2) {
+      console.log('Observable<ISupStatResponse>');
+      return new Observable<ISupStatResponse>();
+    }*/
     const headers = this.headers;
-    const url = `${this.urlAPIMS}sup_stat/?supid=${sup_id}&d1=${d1.toISOString().slice(0, 10)}&d2=${d2.toISOString().slice(0, 10)}`;
+    const url = `${this.urlAPIMS}sup_stat/?supid=${sup_id}&d1=${d1?.toISOString().slice(0, 10)}&d2=${d2?.toISOString().slice(0, 10)}`;
     return this.http.get<ISupStatResponse>(url, { headers })
       .pipe(catchError(this.handleError))
   }

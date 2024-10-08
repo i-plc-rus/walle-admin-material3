@@ -40,6 +40,21 @@
         </li>
       </ul>
 
+      <ul class="docs-navigation-list docs-faceted-list ng-star-inserted"
+        *ngIf="currentUrl === '/rep/akv-sale' ">
+        <li class="docs-faceted-list-item ng-star-inserted">
+          <div class="docs-secondary-nav-header ng-star-inserted"><span>Продажи АКВ</span></div>
+          <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
+            <li class="ng-star-inserted">
+              <a [class.docs-faceted-list-item-active]="currentUrl === '/rep/akv-sale'" routerLink="/rep/akv-sale">
+                <span>SKU за период</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
+      </ul>
+
 
     </div>
   </div>

@@ -1,107 +1,114 @@
 <div class="ng-star-inserted">
-    <!-- <div class="docs-viewer ng-star-inserted">   -->
-    <div class="docs-viewer">
-      <app-docs-breadcrumb></app-docs-breadcrumb>
-      <mat-form-field class="example-form-field">
-        <mat-label>supid</mat-label>
-        <input matInput [formControl]="searchControl">
-        @if (searchControl.value) {
-        <button matSuffix mat-icon-button aria-label="Очистить" (click)="clearSupID()">
-          <mat-icon>close</mat-icon>
-        </button>
-        }
-      </mat-form-field>
+  <!-- <div class="docs-viewer ng-star-inserted">   -->
+  <div class="docs-viewer">
+    <app-docs-breadcrumb></app-docs-breadcrumb>
+    <mat-form-field class="example-form-field">
+      <mat-label>Выбор диапазона дат</mat-label>
+      <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+        <input matStartDate formControlName="start" placeholder="Начало">
+        <input matEndDate formControlName="end" placeholder="Конец">
+      </mat-date-range-input>
+      <!-- <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint> -->
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
 
-      <mat-form-field>
-        <mat-label>Выбор диапазона дат</mat-label>
-        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
-          <input matStartDate formControlName="start" placeholder="Начало">
-          <input matEndDate formControlName="end" placeholder="Конец">
-        </mat-date-range-input>
-        <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      
-        @if (range.controls.start.hasError('matStartDateInvalid')) {
-          <mat-error>Invalid start date</mat-error>
-        }
-        @if (range.controls.end.hasError('matEndDateInvalid')) {
-          <mat-error>Invalid end date</mat-error>
-        }
-      </mat-form-field>
-      
-      <!-- <p>Selected range: {{range.value | json}}</p> -->
+      @if (range.controls.start.hasError('matStartDateInvalid')) {
+      <mat-error>Invalid start date</mat-error>
+      }
+      @if (range.controls.end.hasError('matEndDateInvalid')) {
+      <mat-error>Invalid end date</mat-error>
+      }
+    </mat-form-field>
 
-  
-      <div style="display: flex;flex-direction: row;width: 100%;">
-  
-          <div style="width: 100%;padding: 15px;">
-            
-            <ng-container *ngIf="origin.length>0">
-              <table mat-table [dataSource]="origin" class="mat-elevation-z1 custom-table">
-                <caption style="margin-bottom: 30px;text-align: left;">Оригинал</caption>
-                <!--- Note that these colcaptionumns can be defined in any order.
+    <mat-form-field class="example-form-field">
+      <mat-label>supid</mat-label>
+      <input matInput [formControl]="searchControl">
+      @if (searchControl.value) {
+      <button matSuffix mat-icon-button aria-label="Очистить" (click)="clearSupID()">
+        <mat-icon>close</mat-icon>
+      </button>
+      }
+    </mat-form-field>
+
+    <!-- <p>searchControl.value {{searchControl.value}}</p>
+    <p>range.value {{range.value | json}}</p>
+    <p>isLoading {{isLoading}}</p> -->
+
+    <div *ngIf="isLoading" class="spinner-container">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    
+
+    <div style="display: flex;flex-direction: row;width: 100%;">
+
+      <div style="width: 100%;padding: 15px;">
+
+        <ng-container *ngIf="originDataSource.data.length>0">
+          <table mat-table [dataSource]="originDataSource" class="mat-elevation-z1 custom-table">
+            <caption style="margin-bottom: 30px;text-align: left;">Оригинал</caption>
+            <!--- Note that these colcaptionumns can be defined in any order.
                       The actual rendered columns are set as a property on the row definition" -->
-  
-                
-                <ng-container matColumnDef="date_upd">
-                  <th mat-header-cell *matHeaderCellDef> Дата </th>
-                  <td mat-cell *matCellDef="let element"> {{element.date_upd}} </td>
-                </ng-container>
-  
-                
-                <ng-container matColumnDef="sku_count" >
-                  <th mat-header-cell *matHeaderCellDef > SKU шт.(активные) </th>
-                  <td mat-cell *matCellDef="let element"> {{element.sku_count | number }} </td>
-                </ng-container>
-  
-                
-                <ng-container matColumnDef="q">
-                  <th mat-header-cell *matHeaderCellDef > SKU шт.(все) </th>
-                  <td mat-cell *matCellDef="let element"> {{element.q | number}} </td>
-                </ng-container>
-  
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
+
+
+            <ng-container matColumnDef="date_upd">
+              <th mat-header-cell *matHeaderCellDef> Дата </th>
+              <td mat-cell *matCellDef="let element"> {{element.date_upd}} </td>
             </ng-container>
-          </div>
-  
-  
-          <div style="width: 100%;padding: 15px;">
-            
-            <ng-container *ngIf="origin.length>0">
-              
-              <table mat-table [dataSource]="not_origin" class="mat-elevation-z1 custom-table" >
-                <caption style="margin-bottom: 30px;text-align: left;">Не оригинал</caption>
-                <!--- Note that these columns can be defined in any order.
-                      The actual rendered columns are set as a property on the row definition" -->
-  
-                
-                <ng-container matColumnDef="date_upd">
-                  <th mat-header-cell *matHeaderCellDef> Дата </th>
-                  <td mat-cell *matCellDef="let element"> {{element.date_upd}} </td>
-                </ng-container>
-  
-                
-                <ng-container matColumnDef="sku_count">
-                  <th mat-header-cell *matHeaderCellDef> SKU шт.(активные) </th>
-                  <td mat-cell *matCellDef="let element" > {{element.sku_count | number }} </td>
-                </ng-container>
-  
-                
-                <ng-container matColumnDef="q">
-                  <th mat-header-cell *matHeaderCellDef > SKU шт.(все) </th>
-                  <td mat-cell *matCellDef="let element"> {{element.q | number}} </td>
-                </ng-container>
-  
-                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-              </table>
+
+
+            <ng-container matColumnDef="sku_count">
+              <th mat-header-cell *matHeaderCellDef> SKU шт.(активные) </th>
+              <td mat-cell *matCellDef="let element"> {{element.sku_count | number }} </td>
             </ng-container>
-          </div>
-  
-  
+
+
+            <ng-container matColumnDef="q">
+              <th mat-header-cell *matHeaderCellDef> SKU шт.(все) </th>
+              <td mat-cell *matCellDef="let element"> {{element.q | number}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </ng-container>
       </div>
+
+
+      <div style="width: 100%;padding: 15px;">
+
+        <ng-container *ngIf="notOriginDataSource.data.length>0">
+
+          <table mat-table [dataSource]="notOriginDataSource" class="mat-elevation-z1 custom-table">
+            <caption style="margin-bottom: 30px;text-align: left;">Не оригинал</caption>
+            <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+
+
+            <ng-container matColumnDef="date_upd">
+              <th mat-header-cell *matHeaderCellDef> Дата </th>
+              <td mat-cell *matCellDef="let element"> {{element.date_upd}} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="sku_count">
+              <th mat-header-cell *matHeaderCellDef> SKU шт.(активные) </th>
+              <td mat-cell *matCellDef="let element"> {{element.sku_count | number }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="q">
+              <th mat-header-cell *matHeaderCellDef> SKU шт.(все) </th>
+              <td mat-cell *matCellDef="let element"> {{element.q | number}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </ng-container>
+      </div>
+
+
     </div>
   </div>
+</div>
