@@ -5,6 +5,7 @@ import { SkuNotOriginalComponent } from './pages/sku-not-original/sku-not-origin
 import { HomeComponent } from './pages/home/home.component';
 import { DifSupidDateComponent } from './pages/dif-supid-date/dif-supid-date.component';
 import { AkvSaleComponent } from './pages/akv-sale/akv-sale.component';
+import { AkvOrderComponent } from './pages/akv-order/akv-order.component';
 
 export const routes: Routes = [{path: '', component: HomeComponent},
     {path: 'dif', redirectTo: 'dif/supid-week', pathMatch: 'full'},
@@ -15,4 +16,5 @@ export const routes: Routes = [{path: '', component: HomeComponent},
     {path: 'sku/not-original', component: SkuNotOriginalComponent},
     {path: 'rep', redirectTo: 'rep/akv-sale', pathMatch: 'full'},
     {path: 'rep/akv-sale', component: AkvSaleComponent},
+    {path: 'rep/akv-order', component: AkvOrderComponent},    
 ];

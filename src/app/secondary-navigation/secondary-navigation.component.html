@@ -41,7 +41,7 @@
       </ul>
 
       <ul class="docs-navigation-list docs-faceted-list ng-star-inserted"
-        *ngIf="currentUrl === '/rep/akv-sale' ">
+        *ngIf="currentUrl === '/rep/akv-sale' || currentUrl === '/rep/akv-order'">
         <li class="docs-faceted-list-item ng-star-inserted">
           <div class="docs-secondary-nav-header ng-star-inserted"><span>Продажи АКВ</span></div>
           <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
@@ -53,8 +53,18 @@
             
           </ul>
         </li>
+        <li class="docs-faceted-list-item ng-star-inserted">
+          <div class="docs-secondary-nav-header ng-star-inserted"><span>Заказы АКВ</span></div>
+          <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
+            <li class="ng-star-inserted">
+              <a [class.docs-faceted-list-item-active]="currentUrl === '/rep/akv-order'" routerLink="/rep/akv-order">
+                <span>SKU за период</span>
+              </a>
+            </li>
+            
+          </ul>
+        </li>
       </ul>
-
 
     </div>
   </div>
