@@ -10,6 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class BackAPIService {
 
   private urlAPIMS = 'http://192.168.111.41:8100/api/v1/';  // URL to web api
+  private urlAPIMonolit = 'https://odata.akvilon-zap.ru/api/v3/';  // URL to web api
   private headers: HttpHeaders = new HttpHeaders();
 
   constructor(private http: HttpClient) {
@@ -49,8 +50,33 @@ export class BackAPIService {
       return new Observable<ISupStatResponse>();
     }*/
     const headers = this.headers;
-    const url = `${this.urlAPIMS}sup_stat/?supid=${sup_id}&d1=${d1?.toISOString().slice(0, 10)}&d2=${d2?.toISOString().slice(0, 10)}`;
+    const url = `${this.urlAPIMS}sup_stat/?supid=${sup_id}&d1=${d1?.toLocaleDateString('en-CA')}&d2=${d2?.toLocaleDateString('en-CA')}`;
     return this.http.get<ISupStatResponse>(url, { headers })
+      .pipe(catchError(this.handleError))
+  }
+
+  
+  getAKVBack(d1: Date, d2: Date): Observable<string> {
+    /*console.log(sup_id,d1,d2)
+    if (!sup_id || !d1 || !d2) {
+      console.log('Observable<ISupStatResponse>');
+      return new Observable<ISupStatResponse>();
+    }*/
+    const headers = this.headers;
+    const url = `${this.urlAPIMonolit}akv_back_upload_file/?start_date=${d1?.toLocaleDateString('en-CA')}&end_date=${d2?.toLocaleDateString('en-CA')}`;
+    return this.http.get<string>(url, { headers })
+      .pipe(catchError(this.handleError))
+  }
+
+  getAKVZone(d1: Date, d2: Date): Observable<string> {
+    /*console.log(sup_id,d1,d2)
+    if (!sup_id || !d1 || !d2) {
+      console.log('Observable<ISupStatResponse>');
+      return new Observable<ISupStatResponse>();
+    }*/
+    const headers = this.headers;
+    const url = `${this.urlAPIMonolit}akv_zone_upload_file/?start_date=${d1?.toLocaleDateString('en-CA')}&end_date=${d2?.toLocaleDateString('en-CA')}`;
+    return this.http.get<string>(url, { headers })
       .pipe(catchError(this.handleError))
   }
 

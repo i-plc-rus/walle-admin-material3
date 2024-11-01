@@ -142,13 +142,13 @@ export class AkvSaleComponent implements OnInit{
     console.log('Дата окончания:', endDate);    
     //this.isLoading = true;    
     // this.uploader = new FileUploader({
-    //   url: `${URL}?start_date=${startDate?.toISOString().slice(0, 10)}&end_date=${endDate?.toISOString().slice(0, 10)}`,            
+    //   url: `${URL}?start_date=${startDate?.toLocaleDateString('en-CA')}&end_date=${endDate?.toLocaleDateString('en-CA')}`,            
     //   /*headers: [{name:'Access-Control-Allow-Origin', value: '*'},
     //             {name:'Access-Control-Allow-Methods', value: 'GET,HEAD,OPTIONS,POST,PUT'},
     //             {name:'Access-Control-Allow-Headers', value: 'Origin, X-Requested-With, Content-Type, Accept, Authorization'}],*/
     //   isHTML5: true
     // });
-    this.uploader.setOptions({url:`${URL}?start_date=${startDate?.toISOString().slice(0, 10)}&end_date=${endDate?.toISOString().slice(0, 10)}`})
+    this.uploader.setOptions({url:`${URL}?start_date=${startDate?.toLocaleDateString('en-CA')}&end_date=${endDate?.toLocaleDateString('en-CA')}`})
   }
 
   onDateChangeSupID(val: any) {    
