@@ -10,7 +10,7 @@ import { catchError, tap } from 'rxjs/operators';
 export class BackAPIService {
 
   private urlAPIMS = 'http://192.168.111.41:8100/api/v1/';  // URL to web api
-  private urlAPIMonolit = 'https://odata.akvilon-zap.ru/api/v3/';  // URL to web api
+  private urlAPIMonolit = 'http://192.168.111.41:30909/api/v3/';  // URL to web api
   private headers: HttpHeaders = new HttpHeaders();
 
   constructor(private http: HttpClient) {

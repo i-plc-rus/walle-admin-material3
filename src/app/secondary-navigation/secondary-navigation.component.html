@@ -1,8 +1,8 @@
 <div class="adev-secondary-navigation">
   <div class="adev-secondary-nav-mask">
     <div class="docs-nav-secondary docs-scroll-track-transparent">
-      <ul class="docs-navigation-list docs-faceted-list ng-star-inserted" *ngIf="currentUrl === '/sku/original'">
-        <li class="docs-faceted-list-item ng-star-inserted">
+      <ul class="docs-navigation-list docs-faceted-list ng-star-inserted" *ngIf="currentUrl === '/dif/dif-sku-name'">
+        <!-- <li class="docs-faceted-list-item ng-star-inserted">
           <div class="docs-secondary-nav-header ng-star-inserted"><span>Генерация списков</span></div>
           <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
             <li class="docs-faceted-list-item ng-star-inserted"><a routerlinkactive="docs-faceted-list-item-active"
@@ -10,13 +10,17 @@
             <li class="docs-faceted-list-item ng-star-inserted"><a routerlinkactive="docs-faceted-list-item-active"
                 href="/installation" class="ng-star-inserted"><span>Не оригинал</span></a></li>
           </ul>
-        </li>
+        </li> -->
 
-        <li class="docs-faceted-list-item ng-star-inserted">
+        <li class="docs-faceted-list-item ng-star-inserted" >
           <div class="docs-secondary-nav-header ng-star-inserted"><span>Наименования SKU</span></div>
           <ul class="docs-navigation-list docs-faceted-list ng-star-inserted">
-            <li class="docs-faceted-list-item ng-star-inserted"><a routerlinkactive="docs-faceted-list-item-active"
-                href="/overview" class="ng-star-inserted docs-faceted-list-item"><span>По базе DIF</span></a></li>
+            <li class="ng-star-inserted">
+              <a [class.docs-faceted-list-item-active]="currentUrl === '/dif/dif-sku-name'" routerLink="dif/dif-sku-name">
+                <span>По базе DIF</span>
+              </a>
+            </li>
+
           </ul>
         </li>
 

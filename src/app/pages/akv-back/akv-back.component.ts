@@ -28,23 +28,23 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 import { FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders } from 'ng2-file-upload';
 import { IFilesUrlNameSKU } from '../../core/dto';
 
-//const URL = 'https://odata.akvilon-zap.ru/api/v3/akv_order_upload_file/';
+//const URL = 'http://192.168.111.41:30909/api/v3/akv_order_upload_file/';
 
 @Component({
   selector: 'app-akv-back',
   standalone: true,
-  imports: [DocsBreadcrumbComponent, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, ReactiveFormsModule, MenuComponent, MatTableModule, CommonModule, MatGridListModule, MatCardModule, MatCardContent, JsonPipe, MatDatepickerModule, MatProgressSpinnerModule, FileUploadModule ],
+  imports: [DocsBreadcrumbComponent, MatFormFieldModule, MatInputModule, FormsModule, MatButtonModule, MatIconModule, ReactiveFormsModule, MenuComponent, MatTableModule, CommonModule, MatGridListModule, MatCardModule, MatCardContent, JsonPipe, MatDatepickerModule, MatProgressSpinnerModule, FileUploadModule],
   providers: [provideNativeDateAdapter(),],
   templateUrl: './akv-back.component.html',
   styleUrl: './akv-back.component.scss'
 })
-export class AkvBackComponent implements OnInit{
+export class AkvBackComponent implements OnInit {
   isLoading = false;
   range = new FormGroup({
     start: new FormControl<Date | null>(null),
@@ -58,26 +58,25 @@ export class AkvBackComponent implements OnInit{
   loadFile = new FormControl('');
 
   displayedColumns: string[] = ['date_upd', 'sku_count', 'q'];
-    
-  itsDone:  boolean = false
-  itsStartExport:  boolean = false
+
+  itsDone: boolean = false
+  itsStartExport: boolean = false
 
 
   filesUrl: IFilesUrlNameSKU = {
     f_url_download: ''
   }
-  
-  
-  ngOnInit() {    
-    
+
+
+  ngOnInit() {
   }
-  
-  
+
+
 
   triggerStart(): void {
     console.log('start');
     this.itsStartExport = true;
-    this.isLoading = true;   
+    this.isLoading = true;
   }
 
 
@@ -87,37 +86,36 @@ export class AkvBackComponent implements OnInit{
         this.onDateChange(val);
       });
 
-    
+
 
   }
-  
 
-  
+
   onDateChange(val: any) {
-    if (!val.start || !val.end){
+    if (!val.start || !val.end) {
       return;
     }
     const startDate = val.start;
     const endDate = val.end;
     console.log('Дата начала:', startDate);
-    console.log('Дата окончания:', endDate);    
-    this.isLoading = true; 
+    console.log('Дата окончания:', endDate);
+    this.isLoading = true;
     this.itsStartExport = true;
-    this.itsDone = false;            
+    this.itsDone = false;
     this.backApi.getAKVBack(startDate, endDate)
       .subscribe(response => {
-        const _url = <string>response        
+        const _url = <string>response
         this.isLoading = false;
         console.log('onDateChangeSupID done')
         console.log(`_url-->${_url}`)
-        this.filesUrl.f_url_download = 'https://odata.akvilon-zap.ru/upload/' + _url;
+        this.filesUrl.f_url_download = 'http://192.168.111.41:30909/upload/' + _url;
         this.itsStartExport = false;
         this.itsDone = true;
         this.isLoading = false;
       });
 
-    
+
   }
 
- 
+
 }

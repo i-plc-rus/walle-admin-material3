@@ -1,0 +1,66 @@
+<div class="ng-star-inserted">
+    <!-- <div class="docs-viewer ng-star-inserted">   -->
+    <div class="docs-viewer">
+      <app-docs-breadcrumb></app-docs-breadcrumb>
+  
+      <div style="display: flex;flex-direction: column; width: 100%;">
+        <form>
+         
+  
+          <div style="display: flex;flex-direction: column; width: 200px; margin-bottom: 10px;">
+            <div class="mat-mdc-input-element">
+              <input type="file" name="doc" [disabled]="itsStartExport" ng2FileSelect [uploader]="uploader" accept="xlsx" style="font:inherit;">
+            </div>
+  
+          </div>
+          <div style="display: flex;flex-direction: column; width: 200px;">
+            <div class="mat-mdc-input-element">            
+                <button mat-fab extended (click)="triggerStart()"
+                [disabled]="!uploader.getNotUploadedItems().length || itsStartExport">
+                  <mat-icon>download</mat-icon>
+                  Обработать
+                </button>
+            </div>
+  
+          </div>
+  
+  
+          <div>
+  
+          </div>
+          <div>
+          </div>
+  
+        </form>
+      </div>
+      <!-- <div><p>filesUrl.f_url_download ->{{filesUrl.f_url_download}}</p></div>
+      <div><p>itsDone ->{{itsDone}}</p></div>    
+      <div><p>itsStartExport ->{{itsStartExport}}</p></div>     -->
+      <div *ngIf="isLoading" class="spinner-container">
+        <mat-spinner></mat-spinner>
+      </div>
+      <!--  -->
+      <div style="display: flex;flex-direction: row;width: 100%;">
+        <div class="row" *ngIf="itsDone">
+          <!-- Timeline Card -->
+          <div class="col-lg-4 col-12">
+            <div class="card card-user-timeline">
+              <div class="card-header">
+                <div class="d-flex align-items-center">
+                  <i data-feather="list" class="user-timeline-title-icon"></i>
+                  <h4 class="card-title">Файлы выгрузки</h4>
+                  <p>
+                  <a href="{{filesUrl.f_url_download}}">name.xlsx</a></p>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+          <!--/ Timeline Card -->
+        </div>
+        <!--  -->
+      </div>
+  
+  
+    </div>
+  </div>

@@ -34,7 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { FileItem, FileUploader, FileUploadModule, ParsedResponseHeaders } from 'ng2-file-upload';
 import { IFilesUrlNameSKU } from '../../core/dto';
 
-const URL = 'https://odata.akvilon-zap.ru/api/v3/akv_sale_upload_file/';
+const URL = 'http://192.168.111.41:30909/api/v3/akv_sale_upload_file/';
 
 @Component({
   selector: 'app-akv-sale',
@@ -92,7 +92,7 @@ export class AkvSaleComponent implements OnInit{
     console.log('Server response ->>:');
     let data = JSON.parse(response); //success server response
     console.log(data.toString());
-    this.filesUrl.f_url_download = 'https://odata.akvilon-zap.ru/upload/' + data.toString();
+    this.filesUrl.f_url_download = 'http://192.168.111.41:30909/upload/' + data.toString();
     this.itsStartExport = false;
     this.itsDone = true;
     this.isLoading = false;
