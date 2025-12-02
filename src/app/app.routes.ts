@@ -9,6 +9,7 @@ import { AkvOrderComponent } from './pages/akv-order/akv-order.component';
 import { AkvBackComponent } from './pages/akv-back/akv-back.component';
 import { AkvZoneComponent } from './pages/akv-zone/akv-zone.component';
 import { DifSkuNameComponent } from './pages/dif-sku-name/dif-sku-name.component';
+import { AkvSkuSaleComponent } from './pages/akv-sku-sale/akv-sku-sale.component';
 
 export const routes: Routes = [{path: '', component: HomeComponent},
     {path: 'dif', redirectTo: 'dif/supid-week', pathMatch: 'full'},
@@ -23,4 +24,5 @@ export const routes: Routes = [{path: '', component: HomeComponent},
     {path: 'rep/akv-order', component: AkvOrderComponent},    
     {path: 'rep/akv-back', component: AkvBackComponent},    
     {path: 'rep/akv-zone', component: AkvZoneComponent},    
+    {path: 'rep/akv-sku-sale', component: AkvSkuSaleComponent},    
 ];
