@@ -80,4 +80,12 @@ export class BackAPIService {
       .pipe(catchError(this.handleError))
   }
 
+  getAKVSKUSale(d1: Date, d2: Date): Observable<string> {    
+    const headers = this.headers;
+    const url = `${this.urlAPIMonolit}akv_sku_sale_upload_file/?start_date=${d1?.toLocaleDateString('en-CA')}&end_date=${d2?.toLocaleDateString('en-CA')}`;
+    return this.http.get<string>(url, { headers })
+      .pipe(catchError(this.handleError))
+  }
+
+
 }

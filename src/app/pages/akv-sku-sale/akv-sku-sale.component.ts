@@ -102,7 +102,7 @@ export class AkvSkuSaleComponent  implements OnInit{
       this.isLoading = true; 
       this.itsStartExport = true;
       this.itsDone = false;            
-      this.backApi.getAKVZone(startDate, endDate)
+      this.backApi.getAKVSKUSale(startDate, endDate)
         .subscribe(response => {
           const _url = <string>response        
           this.isLoading = false;
