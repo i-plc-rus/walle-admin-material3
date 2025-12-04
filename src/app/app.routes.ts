@@ -11,6 +11,7 @@ import { AkvZoneComponent } from './pages/akv-zone/akv-zone.component';
 import { DifSkuNameComponent } from './pages/dif-sku-name/dif-sku-name.component';
 import { AkvSkuSaleComponent } from './pages/akv-sku-sale/akv-sku-sale.component';
 
+
 export const routes: Routes = [{path: '', component: HomeComponent},
     {path: 'dif', redirectTo: 'dif/supid-week', pathMatch: 'full'},
     {path: 'dif/supid-week', component: DifSupidWeekComponent},    
